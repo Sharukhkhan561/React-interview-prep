@@ -45,7 +45,7 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <div className="form-valid">
       <h2>Validation Form</h2>
       <form onSubmit={handleSubmit}>
         <div>
