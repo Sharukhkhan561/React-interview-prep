@@ -1,0 +1,13 @@
+#root {
+  box-sizing: border-box;
+  margin: 10px 0px 5 px 0px;
+  padding: 10px;
+}
+.container{
+  border-left: 2px solid black;
+  padding-left: 0.5rem;
+}
+span{
+  margin: 0.5rem;
+  cursor: pointer;
+}
