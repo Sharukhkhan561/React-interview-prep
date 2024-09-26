@@ -1,0 +1,28 @@
+{
+  "faqs": [
+    {
+      "question": " What exactly is JSON?",
+      "answer": "JSON is a faster and more accessible data exchange format. JSON (JavaScript Object Notation) is a platform and language-independent data format. JSON is a wire protocol that specifies a data format for data exchange/communication between processes/applications."
+    },
+    {
+      "question": "How do you convert a JSON text to a JavaScript object?",
+      "answer": "JSON is widely used to collect JSON data from a web server in a file or an HTTP request, convert the JSON data to JavaScript, and display the data on a web page."
+    },
+    {
+      "question": "Explain what JSON-RPC and JSON Parser are?",
+      "answer": "JSON RPC is a basic remote procedure call protocol similar to XML-RPC but uses the lightweight JSON format instead of XML. JSON Parser is a tool for parsing JSON data. JavaScript, PHP, and jQuery can parse it.   Mentioning the JSON file extension JSON is a type of data format."
+    },
+    {
+      "question": "Mention the PHP function that is used to encode JSON?",
+      "answer": "To encode JSON in PHP, use the json_encode () function. This function returns a value's JSON representation; if it fails, it returns false."
+    },
+    {
+      "question": "What steps are involved in converting a string to a JSON Array?",
+      "answer": "First, use the JSON. Parse() method to convert the JSON text to a JavaScript object, and then use the push() method to extract the object's values and push them into the array."
+    },
+    {
+      "question": "What are some of the applications of JSON?",
+      "answer": "JSONP is an abbreviation for JSON with padding. It's a technique for getting around cross-domain rules in web browsers. In other words, when transmitting JSON replies from multiple domains from the client, JSONP is a straightforward approach to cope with browser constraints"
+    }
+  ]
+}
