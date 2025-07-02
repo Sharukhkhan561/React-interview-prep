@@ -1,50 +1,77 @@
 import React, { useState } from "react";
 
-const EmployeeData = () => {
+const EmployeeManager = () => {
   const [employees, setEmployees] = useState([
-    { id: 1, name: "Sharukh", designation: "Frontend Developer" },
-    { id: 2, name: "Amit", designation: "Backend Developer" },
-    { id: 2, name: "Amit", designation: "Backend Developer" },
-    { id: 2, name: "Amit", designation: "Backend Developer" },
+    {
+      id: 1,
+      name: "Sharukh",
+      designation: "Frontend Developer",
+      age: 25,
+      salary: 50000,
+    },
+    {
+      id: 2,
+      name: "Amit",
+      designation: "Backend Developer",
+      age: 30,
+      salary: 60000,
+    },
   ]);
 
-  const [formData, setFormData] = useState({ name: "", designation: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    designation: "",
+    age: "",
+    salary: "",
+  });
+
   const [editingId, setEditingId] = useState(null);
 
-  // Add or update employee
+//   submit button functionality
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.designation) return;
+    const { name, designation, age, salary } = formData;
+
+    if (!name || !designation || !age || !salary) {
+      alert("Please fill all fields.");
+      return;
+    }
 
     if (editingId !== null) {
-      // Edit existing
       setEmployees((prev) =>
         prev.map((emp) =>
-          emp.id === editingId ? { ...emp, ...formData } : emp
+          emp.id === editingId
+            ? { ...emp, name, designation, age: Number(age), salary: Number(salary) }
+            : emp
         )
       );
       setEditingId(null);
     } else {
-      // Add new
       const newEmployee = {
         id: Date.now(),
-        name: formData.name,
-        designation: formData.designation,
+        name,
+        designation,
+        age: Number(age),
+        salary: Number(salary),
       };
       setEmployees((prev) => [...prev, newEmployee]);
     }
 
-    setFormData({ name: "", designation: "" });
+    setFormData({ name: "", designation: "", age: "", salary: "" });
   };
-
-  // Delete employee
+// delete functionality
   const handleDelete = (id) => {
     setEmployees((prev) => prev.filter((emp) => emp.id !== id));
   };
 
-  // Edit button clicked
+  //edit functionality
   const handleEdit = (emp) => {
-    setFormData({ name: emp.name, designation: emp.designation });
+    setFormData({
+      name: emp.name,
+      designation: emp.designation,
+      age: emp.age,
+      salary: emp.salary,
+    });
     setEditingId(emp.id);
   };
 
@@ -52,12 +79,14 @@ const EmployeeData = () => {
     <div style={{ padding: "20px" }}>
       <h2>Employee Manager</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
         <input
           type="text"
-          placeholder="Employee Name"
+          placeholder="Name"
           value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, name: e.target.value })
+          }
         />
         <input
           type="text"
@@ -67,20 +96,52 @@ const EmployeeData = () => {
             setFormData({ ...formData, designation: e.target.value })
           }
         />
+        <input
+          type="number"
+          placeholder="Age"
+          value={formData.age}
+          onChange={(e) =>
+            setFormData({ ...formData, age: e.target.value })
+          }
+        />
+        <input
+          type="number"
+          placeholder="Salary"
+          value={formData.salary}
+          onChange={(e) =>
+            setFormData({ ...formData, salary: e.target.value })
+          }
+        />
         <button type="submit">{editingId ? "Update" : "Add"} Employee</button>
       </form>
 
-      <ul>
-        {employees.map((emp) => (
-          <li>
-            <b>{emp.name}</b> - {emp.designation}
-            <button onClick={() => handleEdit(emp)}>Edit</button>
-            <button onClick={() => handleDelete(emp.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <table border="1" cellPadding="8" cellSpacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employees.map((emp) => (
+            <tr key={emp.id}>
+              <td>{emp.name}</td>
+              <td>{emp.designation}</td>
+              <td>{emp.age}</td>
+              <td>{emp.salary}</td>
+              <td>
+                <button onClick={() => handleEdit(emp)}>Edit</button>
+                <button onClick={() => handleDelete(emp.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default EmployeeData;
+export default EmployeeManager;
