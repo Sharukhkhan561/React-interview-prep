@@ -34,7 +34,7 @@ import React, {
   
     const inputRefs = useRef<HTMLInputElement[]>([]);
   
-    // Focus first input on component mount
+    // Focus first input on when component mount
     useEffect(() => {
       inputRefs.current[0]?.focus();
     }, []);
